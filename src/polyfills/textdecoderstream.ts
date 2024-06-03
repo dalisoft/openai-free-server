@@ -26,7 +26,7 @@ export class PolyfillTextDecoderStream extends TransformStream<
 
   constructor(
     // biome-ignore lint/correctness/noUndeclaredVariables: <explanation>
-    encoding: Encoding = 'utf-8',
+    encoding: BufferEncoding = 'utf-8',
     {
       fatal = false,
       ignoreBOM = false

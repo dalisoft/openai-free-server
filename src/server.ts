@@ -16,7 +16,7 @@ import {
   modelsContextLength,
   userRole
 } from './types';
-import { getTokenCount, promptCalculator } from './utils/prompt-calculator';
+import { getTokenCount } from './utils/prompt-calculator';
 
 const app = new Elysia()
   .post(
@@ -32,7 +32,7 @@ const app = new Elysia()
       if (promptLength + max_tokens >= modelContextLength) {
         const choice: Static<typeof JsonResponseChoice> = {
           index: 0,
-          delta: { content: null, role: 'assistant' },
+          delta: { content: 'Context length exceed', role: 'assistant' },
           finish_reason: 'length',
           logprobs: null
         };
@@ -48,7 +48,7 @@ const app = new Elysia()
 
       const response = await fetch(API_CHAT_URL, {
         method: 'POST',
-        headers: API_HEADERS,
+        headers: API_HEADERS as never,
         body: JSON.stringify({
           model: {
             id: model,
@@ -64,12 +64,30 @@ const app = new Elysia()
         })
       });
 
+      if (!response || !response.body) {
+        const choice: Static<typeof JsonResponseChoice> = {
+          index: 0,
+          delta: { content: 'Empty body', role: 'assistant' },
+          finish_reason: 'length',
+          logprobs: null
+        };
+
+        return {
+          id,
+          object: 'chat.completion',
+          created: Date.now(),
+          model: body.model,
+          choices: [choice]
+        } as Static<typeof JsonResponse>;
+      }
+
       if (stream) {
         const stream = new Stream();
-        const contents = response.body?.pipeThrough(
+        const contents = response.body.pipeThrough<string>(
           new PolyfillTextDecoderStream()
         );
 
+        // @ts-ignore
         for await (const content of contents) {
           const choice: Static<typeof JsonResponseChoice> = {
             index: 0,
@@ -126,14 +144,14 @@ const app = new Elysia()
     async () => {
       const response = await fetch(API_MODELS_URL, {
         method: 'POST',
-        headers: API_HEADERS,
+        headers: API_HEADERS as never,
         body: JSON.stringify({ key: '' })
       });
       const data = await response.json();
 
       return {
-        object: 'list',
-        data: data.map(({ id }) => {
+        object: 'list' as const,
+        data: data.map(({ id }: { id: Static<typeof models> }) => {
           return {
             id,
             object: 'model',
