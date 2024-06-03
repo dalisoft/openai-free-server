@@ -3,6 +3,7 @@
   "module": "src/server.ts",
   "type": "module",
   "scripts": {
+    "pm2-start": "env $(cat .env) pm2 start bun --name \"api\" -- start",
     "dev": "bun --watch run src/server.ts",
     "build": "bun build src/server.ts",
     "start": "NODE_ENV=production bun src/server.ts",
