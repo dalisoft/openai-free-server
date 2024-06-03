@@ -198,8 +198,8 @@ const app = new Elysia()
     }
   );
 
-await app.listen({
+app.listen({
   hostname: '0.0.0.0',
-  port: Number(3000),
+  port: Number(process.env.SERVER_PORT),
   reusePort: true
 });
