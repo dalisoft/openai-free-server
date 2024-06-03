@@ -1,0 +1,10 @@
+ls:
+  .ts: PascalCase | camelCase | kebab-case
+  .d.ts: point.case
+  .js: PascalCase | camelCase | kebab-case
+  .json: kebab-case
+  .yml: lowercase
+  .md: regex:[A-Z0-9]+
+
+ignore:
+  - "node_modules"
