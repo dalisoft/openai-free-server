@@ -4,6 +4,15 @@ import { chatApi } from './routes/chat';
 import { modelsApi } from './routes/models';
 
 const app = new Elysia({ prefix: '/v1' })
+  .onError(({ code, error }) => {
+    console.log({ code, error });
+
+    return {
+      status: 'error',
+      code,
+      error
+    };
+  })
   .use(
     swagger({
       documentation: {
