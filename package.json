@@ -1,0 +1,34 @@
+{
+  "name": "openapi-free-server",
+  "module": "src/server.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch run src/server.ts",
+    "build": "bun build src/server.ts",
+    "start": "NODE_ENV=production bun src/server.ts",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.7.3",
+    "@evilmartians/lefthook": "^1.6.14",
+    "@types/bun": "^1.1.3",
+    "commitlint-rs-npm": "dalisoft/commitlint-rs-npm",
+    "dprint": "^0.46.1",
+    "typos-rs-npm": "dalisoft/typos-rs-npm"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@elysiajs/stream": "^1.0.2",
+    "elysia": "^1.0.22",
+    "tiktoken": "^1.0.15"
+  },
+  "trustedDependencies": [
+    "@biomejs/biome",
+    "@evilmartians/lefthook",
+    "commitlint-rs-npm",
+    "dprint",
+    "typos-rs-npm"
+  ]
+}

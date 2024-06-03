@@ -1,0 +1,7 @@
+[default]
+extend-ignore-re = [
+    "comission*",
+]
+
+[default.extend-identifiers]
+overridedName = "overridedName"

@@ -1,0 +1,9 @@
+{
+  "[javascript][javascriptreact][typescript][typescriptreact][json][jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[markdown][dockerfile]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "biome.enabled": true
+}
