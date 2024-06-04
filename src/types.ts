@@ -9,9 +9,9 @@ export const models = t.Union([
 
 export const userRole = t.Union([
   t.Literal('user'),
-  t.Literal('assistant'),
+  t.Literal('assistant')
   /* Legacy API? */
-  t.Literal('system')
+  // t.Literal('system')
 ]);
 
 export const modelsContextLength: Record<Static<typeof models>, number> = {
