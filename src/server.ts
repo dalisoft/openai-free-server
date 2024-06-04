@@ -5,7 +5,7 @@ import { modelsApi } from './routes/models';
 
 const app = new Elysia({ prefix: '/v1' })
   .onError(({ code, error }) => {
-    console.log({ code, error });
+    console.log({ code, error: JSON.stringify(error, null, 2) });
 
     return {
       status: 'error',
