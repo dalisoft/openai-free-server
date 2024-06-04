@@ -2,10 +2,14 @@ import swagger from '@elysiajs/swagger';
 import { Elysia } from 'elysia';
 import { chatApi } from './routes/chat';
 import { modelsApi } from './routes/models';
+import logger from './utils/logger';
 
 const app = new Elysia({ prefix: '/v1' })
   .onError(({ code, error }) => {
-    console.log({ code, error: JSON.stringify(error, null, 2) });
+    logger.error('onError', {
+      code,
+      error
+    });
 
     return {
       status: 'error',

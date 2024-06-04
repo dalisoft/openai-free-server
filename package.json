@@ -25,7 +25,9 @@
     "@elysiajs/stream": "^1.0.2",
     "@elysiajs/swagger": "^1.0.5",
     "elysia": "^1.0.22",
-    "tiktoken": "^1.0.15"
+    "logform": "^2.6.0",
+    "tiktoken": "^1.0.15",
+    "winston": "^3.13.0"
   },
   "trustedDependencies": [
     "@biomejs/biome",
