@@ -7,7 +7,12 @@ export const models = t.Union([
   t.Literal('mixtral-8x7b-32768')
 ]);
 
-export const userRole = t.Union([t.Literal('user'), t.Literal('assistant')]);
+export const userRole = t.Union([
+  t.Literal('user'),
+  t.Literal('assistant'),
+  /* Legacy API? */
+  t.Literal('system')
+]);
 
 export const modelsContextLength: Record<Static<typeof models>, number> = {
   'gemma-7b-it': 8192,
